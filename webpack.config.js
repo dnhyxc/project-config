@@ -226,6 +226,8 @@ module.exports = (env, argv) => {
       before(app) {
         apiMocker(app, path.resolve(__dirname, './mock/mock.js'));
       },
+
+      // 配置启动时终端提示信息
       stats: {
         colors: true,
         hash: false,  // 编译使用的 hash
