@@ -6,12 +6,12 @@
  * 将设置（JSON）的 "eslint.validate": [ "javascript", "javascriptreact"]
  * 后面加上 , "typescript", "typescriptreact"
  */
- {
+{
   // TODO 目前 @typescript-eslint/parser 和 babel-eslint 对 jsx 的处理有一些差异，所以 js 还是维持原 parser
- "parser": "babel-eslint",
- "plugins": [
-   "@typescript-eslint",
-   "react-ext",
+  "parser": "babel-eslint",
+  "plugins": [
+    "@typescript-eslint",
+    "react-ext",
     "react-hooks"
   ],
   "extends": "airbnb",
@@ -30,7 +30,11 @@
     }
   },
   "rules": {
-    "linebreak-style":[0,"erron","windows"],
+    "linebreak-style": [
+      0,
+      "erron",
+      "windows"
+    ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "arrow-body-style": [
@@ -282,9 +286,12 @@
           2
         ],
         "@typescript-eslint/no-empty-function": "error",
-        "@typescript-eslint/array-type": ["error", {
-          "default": "array-simple"
-        }],
+        "@typescript-eslint/array-type": [
+          "error",
+          {
+            "default": "array-simple"
+          }
+        ],
         "@typescript-eslint/member-delimiter-style": [
           "error"
         ],

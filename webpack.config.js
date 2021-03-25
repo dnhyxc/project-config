@@ -1,35 +1,35 @@
-const path = require("path");
+const path = require('path');
 // const { name, version } = require('./package.json');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const postcssNormalize = require("postcss-normalize");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const postcssNormalize = require('postcss-normalize');
 const apiMocker = require('mocker-api');
 
 const matchSVGSprite = /assets\/icons\/|components\/Base\/Icon\/icons\//;
-const { ESLINT_LOADER_DISABLED, IS_REAL_PROD } = process.env; // 通过环境变量禁用 eslint-loader
+const { ESLINT_LOADER_DISABLED } = process.env; // 通过环境变量禁用 eslint-loader
 
 module.exports = (env, argv) => {
-  const devMode = argv.mode !== "production";
+  const devMode = argv.mode !== 'production';
   // const publicPath = devMode ? '/' : `//t.newscdn.cn/${name}/${version}/`;
 
   return {
-    entry: "./src/index.ts",
+    entry: './src/index.ts',
     output: {
-      filename: "bundle.js",
-      path: path.resolve(__dirname, "build"),
+      filename: 'bundle.js',
+      path: path.resolve(__dirname, 'build'),
       // publicPath
     },
 
     // 生产模式下关闭map文件
-    devtool: devMode ? "source-map" : "none",
+    devtool: devMode ? 'source-map' : 'none',
 
     // 配置路径别名
     resolve: {
-      extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+      extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
       alias: {
-        "@": path.resolve(__dirname, "./src"),
-        $: path.resolve(__dirname, "./typings"),
+        '@': path.resolve(__dirname, './src'),
+        $: path.resolve(__dirname, './typings'),
       },
     },
 
@@ -50,19 +50,19 @@ module.exports = (env, argv) => {
         {
           test: /\.(css|less)$/,
           use: [
-            devMode ? MiniCssExtractPlugin.loader : "style-loader",
+            devMode ? MiniCssExtractPlugin.loader : 'style-loader',
             {
-              loader: "css-loader",
+              loader: 'css-loader',
               options: {
                 modules: {
-                  mode: "local",
-                  localIdentName: "[name]__[local]",
+                  mode: 'local',
+                  localIdentName: '[name]__[local]',
                 },
                 importLoaders: 1,
               },
             },
             {
-              loader: "less-loader",
+              loader: 'less-loader',
               options: {
                 lessOptions: {
                   // modifyVars: {
@@ -74,7 +74,7 @@ module.exports = (env, argv) => {
               },
             },
             {
-              loader: "px2rem-loader",
+              loader: 'px2rem-loader',
               options: {
                 importLoaders: 1,
                 remUnit: 37.5,
@@ -82,16 +82,16 @@ module.exports = (env, argv) => {
               },
             },
             {
-              loader: "postcss-loader",
+              loader: 'postcss-loader',
               options: {
                 postcssOptions: {
-                  ident: "postcss",
+                  ident: 'postcss',
                   plugins: [
                     [
-                      "postcss-preset-env",
+                      'postcss-preset-env',
                       {
                         autoprefixer: {
-                          flexbox: "no-2009",
+                          flexbox: 'no-2009',
                         },
                         stage: 3,
                       },
@@ -114,20 +114,20 @@ module.exports = (env, argv) => {
           test: /\.(js|jsx|ts|tsx)$/,
           use: [
             {
-              loader: "babel-loader",
+              loader: 'babel-loader',
               options: {
                 presets: [
                   [
-                    "@babel/preset-env",
+                    '@babel/preset-env',
                     {
                       modules: false,
                     },
                   ],
-                  "@babel/preset-react",
+                  '@babel/preset-react',
                 ],
                 plugins: [
                   [
-                    "@babel/plugin-transform-runtime",
+                    '@babel/plugin-transform-runtime',
                     {
                       useESModules: true,
                       corejs: 3,
@@ -137,14 +137,14 @@ module.exports = (env, argv) => {
               },
             },
             {
-              loader: "ts-loader",
+              loader: 'ts-loader',
               options: {
                 happyPackMode: true,
                 transpileOnly: true,
                 compilerOptions: {
                   noEmit: false,
-                  module: "esnext",
-                  target: devMode ? "es2017" : "es5",
+                  module: 'esnext',
+                  target: devMode ? 'es2017' : 'es5',
                 },
               },
             },
@@ -158,10 +158,10 @@ module.exports = (env, argv) => {
           test: /\.(mp4|png|jpg|jpeg|png|svg|cur|gif|webp|webm|otf)$/,
           use: [
             {
-              loader: "url-loader",
+              loader: 'url-loader',
               options: {
                 limit: 8192,
-                name: "static/[name].[hash:11].[ext]",
+                name: 'static/[name].[hash:11].[ext]',
               },
             },
           ],
@@ -169,7 +169,7 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.html$/,
-          loader: "html-loader",
+          loader: 'html-loader',
         },
         /**
          * 打包svg资源，需要下载 svg-sprite-loader(用于将svg图以img标签的形式引入)
@@ -179,9 +179,9 @@ module.exports = (env, argv) => {
           include: matchSVGSprite,
           use: [
             {
-              loader: "svg-sprite-loader",
+              loader: 'svg-sprite-loader',
               options: {
-                symbolId: "icon-[name]",
+                symbolId: 'icon-[name]',
               },
             },
           ],
@@ -194,16 +194,16 @@ module.exports = (env, argv) => {
      */
     plugins: [
       new HtmlWebpackPlugin({
-        filename: "index.html",
-        template: path.resolve(__dirname, "./src/index.ejs"),
+        filename: 'index.html',
+        template: path.resolve(__dirname, './src/index.ejs'),
         minify: {
           removeComments: true, // 移除注释
           collapseWhitespace: true, // 移除空格
         },
       }),
       new MiniCssExtractPlugin({
-        filename: "[name].css",
-        chunkFilename: "[name].css",
+        filename: '[name].css',
+        chunkFilename: '[name].css',
       }),
       new OptimizeCSSAssetsPlugin(),
     ],
@@ -213,13 +213,13 @@ module.exports = (env, argv) => {
      */
     devServer: {
       port: 8000,
-      host: "localhost",
+      host: 'localhost',
       // open: true,
       disableHostCheck: true,
       historyApiFallback: true,
       proxy: {
-        "/api": {
-          target: "http://test.bat.xinhuazhiyun.com",
+        '/api': {
+          target: 'http://test.bat.xinhuazhiyun.com',
           changeOrigin: true,
         },
       },
@@ -230,10 +230,10 @@ module.exports = (env, argv) => {
       // 配置启动时终端提示信息
       stats: {
         colors: true,
-        hash: false,  // 编译使用的 hash
+        hash: false, // 编译使用的 hash
         version: false, // 用来编译的 webpack 的版本
-        timings: true,  // 编译耗时 (ms)
-        assets: false,  // 是否开启assets提示
+        timings: true, // 编译耗时 (ms)
+        assets: false, // 是否开启assets提示
         chunks: false,
         modules: false, // 是否开启modules提示
         reasons: false,
