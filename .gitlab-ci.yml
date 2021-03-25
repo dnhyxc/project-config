@@ -1,0 +1,36 @@
+image: registry.cn-hangzhou.aliyuncs.com/commonality/fed-build:0.0.1
+
+stages:
+  - build
+  - buildProd
+
+testEnvJob:
+  stage: build
+  only:
+    - test
+  before_script:
+    - echo "Before package in test env "
+  after_script:
+    - echo "After package script in test env"
+  script:
+    - node -v
+    - cship -v
+    - npm run ship
+  tags:
+    - public
+
+
+mainJob:
+  stage: buildProd
+  only:
+    - tags
+  before_script:
+    - echo "Before script in prod stage"
+  after_script:
+    - echo "After script in prod stage"
+  script:
+    - node -v
+    - cship -v
+    - npm run ship:prod
+  tags:
+    - public
