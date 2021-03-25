@@ -1131,3 +1131,6 @@ module.exports = (env, argv) => {
   }
 }
 ```
+
+> 最后附上该项目 github 仓库地址
+> [猛戳这里查看吧](https://github.com/dnhyxc/project-config "仓库地址")
