@@ -91,12 +91,6 @@ module.exports = (env, argv) => {
                       "postcss-preset-env",
                       {
                         autoprefixer: {
-                          // browsers: [
-                          //   '>1%',
-                          //   'last 4 versions',
-                          //   'Firefox ESR',
-                          //   'not ie < 9',
-                          // ],
                           flexbox: "no-2009",
                         },
                         stage: 3,
@@ -223,11 +217,6 @@ module.exports = (env, argv) => {
       // open: true,
       disableHostCheck: true,
       historyApiFallback: true,
-      // hot: true,
-      // compress: true,
-      // clientLogLevel: "none",
-      // quiet: true,
-      // publicPath: '/',
       proxy: {
         "/api": {
           target: "http://test.bat.xinhuazhiyun.com",
