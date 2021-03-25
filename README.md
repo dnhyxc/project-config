@@ -1066,6 +1066,68 @@ module.exports = (env, argv) => {
 
 #### package.json 资源包
 
-```js
-
+```json
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack serve --mode=development --config=webpack.config.js --hot --inline",
+    "build": "npm i && webpack --mode=production --progress",
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src -c .eslintrc",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "dva": "^2.4.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@babel/runtime-corejs3": "^7.13.10",
+    "@typescript-eslint/eslint-plugin": "~2.6.1",
+    "@typescript-eslint/parser": "~2.6.1",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-dva-hmr": "^0.3.2",
+    "css-loader": "^5.1.4",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-loader": "~3.0.2",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-ext": "^0.1.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^4.5.1",
+    "husky": "^0.12.0",
+    "less": "^4.1.1",
+    "less-loader": "^5.0.0",
+    "lib-flexible": "^0.3.2",
+    "mini-css-extract-plugin": "^1.3.9",
+    "mocker-api": "^2.8.3",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "postcss-normalize": "^9.0.0",
+    "px2rem-loader": "^0.1.9",
+    "redbox-react": "^1.4.3",
+    "roadhog": "^2.5.0-beta.4",
+    "style-loader": "^2.0.0",
+    "svg-sprite-loader": "^6.0.2",
+    "ts-loader": "^8.0.18",
+    "typescript": "^4.2.3",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "sh ./.git-hooks/pre-commit.sh"
+    }
+  }
+}
 ```
