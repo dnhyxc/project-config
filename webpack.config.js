@@ -239,16 +239,16 @@ module.exports = (env, argv) => {
       },
       stats: {
         colors: true,
-        hash: false,
-        version: false,
-        timings: true,
-        assets: false,
+        hash: false,  // 编译使用的 hash
+        version: false, // 用来编译的 webpack 的版本
+        timings: true,  // 编译耗时 (ms)
+        assets: false,  // 是否开启assets提示
         chunks: false,
-        modules: false,
+        modules: false, // 是否开启modules提示
         reasons: false,
         children: false,
         source: false,
-        errors: true,
+        errors: true, // 处理这个模块发现的错误的数量
         errorDetails: false,
         warnings: true,
         publicPath: false,
