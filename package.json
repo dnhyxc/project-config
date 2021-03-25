@@ -3,7 +3,7 @@
   "scripts": {
     "start": "webpack serve --mode=development --config=webpack.config.js --hot --inline",
     "build": "npm i && webpack --mode=production --progress",
-    "lint": "tsc; eslint --fix --ext .js,.jsx,.ts,.tsx src -c .eslintrc",
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src -c .eslintrc",
     "precommit": "npm run lint"
   },
   "dependencies": {
