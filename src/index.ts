@@ -1,7 +1,7 @@
-import dva from "dva";
-import { createBrowserHistory as createHistory } from "history";
+import dva from 'dva';
+import { createBrowserHistory as createHistory } from 'history';
 // import "lib-flexible";
-import "./index.less";
+import './index.less';
 
 // import {
 //   registerMicroApps,
@@ -22,10 +22,10 @@ const app = dva({
 // app.model(require('./models/example').default);
 
 // 4. Router
-app.router(require("./router").default);
+app.router(require('./router').default);
 
 // 5. Start
-app.start("#root");
+app.start('#root');
 
 // const apps = [
 //   {
