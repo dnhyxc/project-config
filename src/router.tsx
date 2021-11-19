@@ -1,17 +1,25 @@
-import React from 'react';
-import { Router, Route, Switch } from 'dva/router';
-import Home from './routes/home';
-import Detail from './routes/detail';
+import React from "react";
+import { Route, Switch, routerRedux } from "dva/router";
+import { ConfigProvider } from "antd";
+import zh_CN from "antd/es/locale/zh_CN";
+import Home from "./routes/home";
+import Detail from "./routes/detail";
+import App from "./routes/app";
 
-function RouterConfig({ history }: any) {
+const { ConnectedRouter } = routerRedux;
+
+const RouterConfig = ({ history }: any) => {
   return (
-    <Router history={history}>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/detail" exact component={Detail} />
-      </Switch>
-    </Router>
+    <ConfigProvider locale={zh_CN}>
+      <ConnectedRouter history={history}>
+        <Switch>
+          <Route path="/dnhyxc" component={App} />
+          <Route path="/home" component={Home} />
+          <Route path="/detail" component={Detail} />
+        </Switch>
+      </ConnectedRouter>
+    </ConfigProvider>
   );
-}
+};
 
 export default RouterConfig;

@@ -1,11 +1,14 @@
-import React from 'react';
-import { Button } from 'antd';
-import styles from './index.less';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Button } from "antd";
+import styles from "./index.less";
 
 const Home: React.FC = () => {
   return (
     <div className={styles.container}>
-      <Button type="primary">Home</Button>
+      <Link to="/react">
+        <Button>React</Button>
+      </Link>
     </div>
   );
 };

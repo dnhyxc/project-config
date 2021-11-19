@@ -1,29 +1,29 @@
-declare module '*.svg' {
+declare module "*.svg" {
   const url: string;
   export default url;
 }
 
-declare module '*.png' {
+declare module "*.png" {
   const url: string;
   export default url;
 }
 
-declare module '*.webp' {
+declare module "*.webp" {
   const url: string;
   export default url;
 }
 
-declare module '*.webm' {
+declare module "*.webm" {
   const url: string;
   export default url;
 }
 
-declare module '*.mp4' {
+declare module "*.mp4" {
   const url: string;
   export default url;
 }
 
-declare module '*.jpg' {
+declare module "*.jpg" {
   const url: string;
   export default url;
 }
@@ -32,20 +32,22 @@ declare module '*.jpg' {
  * 考虑使用 typed-css-modules 对 less 自动生成 d.ts （主要是需要开进程 watch 编译，比较麻烦）
  * 或者调研 TypeScript 扩展
  */
-declare module '*.less' {
+declare module "*.less" {
   const styles: Record<string, string>;
   export default styles;
 }
 
-declare module 'dva-loading' {
+declare module "dva-loading" {
   export default function createLoading(options: any): any;
 }
 
-declare module '*.woff';
-declare module '*.woff2';
-declare module '*.otf';
+declare module "react-dom";
 
-declare module '*.json' {
+declare module "*.woff";
+declare module "*.woff2";
+declare module "*.otf";
+
+declare module "*.json" {
   const value: any;
   export default value;
 }
@@ -54,22 +56,22 @@ declare interface Window {
   liangzhu_data_info: any;
 }
 
-declare module 'echarts/map/json/*.json' {
+declare module "echarts/map/json/*.json" {
   const json: any;
   export default json;
 }
-declare module 'react-lines-ellipsis' {
+declare module "react-lines-ellipsis" {
   // type definitions goes here
   const LinesEllipsis: any;
   export default LinesEllipsis;
 }
 
-declare module 'react-lines-ellipsis/lib/responsiveHOC' {
+declare module "react-lines-ellipsis/lib/responsiveHOC" {
   const responsiveHOC: any;
   export default responsiveHOC;
 }
 
-declare module 'react-useanimations' {
+declare module "react-useanimations" {
   const UseAnimations: any;
   export default UseAnimations;
 }
@@ -82,17 +84,17 @@ interface Window {
   HLS_JS_DEBUG?: boolean;
 }
 
-declare module 'china-division/dist/*.json' {
+declare module "china-division/dist/*.json" {
   const json: any;
   export default json;
 }
 
-declare module 'braft-utils' {
+declare module "braft-utils" {
   const ContentUtils: any;
   export { ContentUtils };
 }
 
-declare module 'rc-form' {
+declare module "rc-form" {
   const createForm: any;
   export { createForm };
 }

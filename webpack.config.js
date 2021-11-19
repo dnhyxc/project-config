@@ -9,6 +9,7 @@ const apiMocker = require('mocker-api');
 const matchSVGSprite = /assets\/icons\/|components\/Base\/Icon\/icons\//;
 const { ESLINT_LOADER_DISABLED } = process.env; // 通过环境变量禁用 eslint-loader
 
+
 module.exports = (env, argv) => {
   const devMode = argv.mode !== 'production';
   // const publicPath = devMode ? '/' : `//t.newscdn.cn/${name}/${version}/`;
@@ -212,16 +213,16 @@ module.exports = (env, argv) => {
      * 热更新
      */
     devServer: {
-      port: 8000,
+      port: 9002,
       host: 'localhost',
       // open: true,
       disableHostCheck: true,
       historyApiFallback: true,
       proxy: {
-        '/api': {
-          target: 'http://test.bat.xinhuazhiyun.com',
-          changeOrigin: true,
-        },
+        // '/api': {
+        //   target: 'http://test.bat.xinhuazhiyun.com',
+        //   changeOrigin: true,
+        // },
       },
       before(app) {
         apiMocker(app, path.resolve(__dirname, './mock/mock.js'));
@@ -250,23 +251,23 @@ module.exports = (env, argv) => {
     // 设置打包构建时终端中的提示信息
     stats: {
       hash: false, // 编译使用的 hash
-      timings: true,  // 告知 stats 添加时间信息
+      timings: true, // 告知 stats 添加时间信息
       modules: false, // 告知 stats 是否添加关于构建模块的信息
-      chunks: false,  // 告知 stats 是否添加关于 chunk 的信息。
+      chunks: false, // 告知 stats 是否添加关于 chunk 的信息。
       version: false, // 是否用来编译的 webpack 的版本
-      assets: true,  // 是否关闭展示资源信息
-      children: false,  // 不添加关于子模块的信息。
+      assets: true, // 是否关闭展示资源信息
+      children: false, // 不添加关于子模块的信息。
       warningsFilter: warning => /Conflicting order between/gm.test(warning), // 排除掉匹配的告警信息
     },
 
     performance: {
-      hints: "warning", // 枚举
+      hints: 'warning', // 枚举
       maxAssetSize: 30000000, // 整数类型（以字节为单位）
       maxEntrypointSize: 50000000, // 整数类型（以字节为单位）
-      assetFilter: function (assetFilename) {
+      assetFilter: (assetFilename) => {
         // 提供资源文件名的断言函数
         return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
-      }
+      },
     },
   };
 };
